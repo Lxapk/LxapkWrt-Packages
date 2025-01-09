@@ -1,0 +1,118 @@
+
+name: 废弃暂存
+
+on:
+#  schedule:
+#    - cron: '0 22 * * *'  # 每天执行一次
+#  workflow_dispatch:  # 允许手动触发
+  repository_dispatch:
+    types: [on-update]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Git
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
+        SUBFOLDER: golang
+        REPO_ADDR: https://github.com/sbwml/packages_lang_golang
+        TARGET_BRANCH: 23.x
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
+        SUBFOLDER: luci-theme-argon
+        REPO_ADDR: https://github.com/jerrykuku/luci-theme-argon
+        TARGET_BRANCH: master
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
+        SUBFOLDER: luci-app-autotimeset
+        REPO_ADDR: https://github.com/sirpdboy/luci-app-autotimeset
+        TARGET_BRANCH: master
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
+        SUBFOLDER: luci-app-partexp
+        REPO_ADDR: https://github.com/sirpdboy/luci-app-partexp
+        TARGET_BRANCH: main
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
+        SUBFOLDER: luci-app-parentcontrol
+        REPO_ADDR: https://github.com/sirpdboy/luci-app-parentcontrol
+        TARGET_BRANCH: main
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
+        SUBFOLDER: luci-app-netwizard
+        REPO_ADDR: https://github.com/sirpdboy/luci-app-netwizard
+        TARGET_BRANCH: main
+
+    - name: Sync repository
+      run: |
+        if [ ! -e "$SUBFOLDER" ];then
+            git subtree add --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "First : $REPO_ADDR"
+        else
+            git subtree pull --prefix=$SUBFOLDER $REPO_ADDR $TARGET_BRANCH --squash -m "Update : $REPO_ADDR"
+        fi
+      env:
+        SUBFOLDER: netspeedtest
+        REPO_ADDR: https://github.com/sirpdboy/netspeedtest
+        TARGET_BRANCH: master
+
+    - name: push changes
+      run: |
+        git push
+
+    - name: Cleanup Workflow
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 1

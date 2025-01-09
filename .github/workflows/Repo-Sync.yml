@@ -1,0 +1,140 @@
+name: Sync Repository
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # 每天执行一次
+  workflow_dispatch:  # 允许手动触发
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 签出存储库
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: 初始化环境
+      run: |
+        sudo timedatectl set-timezone "Asia/Shanghai"
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: 定义函数脚本文件
+      run: |
+        cat > sync_repo.sh << \EOF
+        #!/bin/bash
+
+        sync_repo() {
+            local category=$1
+            local repo_url=$2
+            local branch=$3
+            local target_dir=$4
+            local description=$5
+            reponame=$(basename "$repo_url")
+
+            echo "+++++++++++++++++++++++++++++++"
+            echo "开始同步 $repo_url $branch分支 到 $target_dir"
+            if [ -d "$target_dir" ]; then
+                echo "清理目标目录: $target_dir"
+                rm -rf "$target_dir"
+            fi
+            mkdir -p "$target_dir"
+            git clone --depth=1 --branch "$branch" "$repo_url" "$target_dir"
+            rm -rf "$target_dir/.git"
+            git add $target_dir
+            if git commit -m "$(date +"%Y.%m.%d")：$repo_url"; then
+                echo "$category|$repo_url|$branch|$(date +"%Y.%m.%d")|$description" >> updated_repos.txt
+            else
+                echo "没有需要提交的更改"
+            fi
+            git push
+        }
+
+        sync_wiki() {
+            local category=$1
+            local repo_url=$2
+            local target_dir=$3
+            local description=$4
+            reponame=$(basename "$repo_url")
+
+            echo "+++++++++++++++++++++++++++++++"
+            echo "开始同步 ${repo_url}.wiki.git 到 $target_dir"
+            if [ -d "$target_dir" ]; then
+                echo "清理目标目录: $target_dir"
+                rm -rf "$target_dir"
+            fi
+            mkdir -p "$target_dir"
+            git clone --depth=1 "$repo_url".wiki.git "$target_dir"
+            rm -rf "$target_dir/.git"
+            git add $target_dir
+            if git commit -m "$(date +"%Y.%m.%d")：${repo_url} wiki"; then
+                echo "$category|$repo_url|wiki|$(date +"%Y.%m.%d")|$description" >> updated_repos.txt
+            else
+                echo "没有需要提交的更改"
+            fi
+            git push
+        }
+
+        EOF
+        chmod +x sync_repo.sh
+
+    - name: 同步 OpenWrt 软件包
+      run: |
+        source ./sync_repo.sh
+        sync_repo "依赖" "https://github.com/sbwml/packages_lang_golang" "23.x" "golang" "geodata、xray 等依赖高版本 go"
+        sync_repo "主题" "https://github.com/jerrykuku/luci-theme-argon" "master" "luci-theme-argon" "argon 主题"
+        sync_repo "应用" "https://github.com/sirpdboy/luci-app-autotimeset" "master" "luci-app-autotimeset" "定时任务设置"
+        sync_repo "应用" "https://github.com/sirpdboy/luci-app-partexp" "main" "luci-app-partexp" "分区格式化、扩容、挂载"
+        sync_repo "应用" "https://github.com/sirpdboy/luci-app-parentcontrol" "main" "luci-app-parentcontrol" "家长控制"
+        sync_repo "应用" "https://github.com/sirpdboy/luci-app-netwizard" "main" "luci-app-netwizard" "网络设置向导"
+        sync_repo "应用" "https://github.com/sirpdboy/netspeedtest" "master" "netspeedtest" "网络速度诊断测试"
+
+    - name: 显示 updated_repos.txt 内容
+      run: |
+        if [ -f updated_repos.txt ]; then
+            echo "updated_repos.txt 内容如下："
+            cat updated_repos.txt
+        else
+            echo "updated_repos.txt 文件不存在"
+        fi
+
+    - name: 更新README.md中的表格
+      run: |
+        if [ -f updated_repos.txt ]; then
+            while IFS='|' read -r category repo_url branch sync_time description; do
+                # 检查分类表格是否存在
+                if ! grep -q "## $category" README.md; then
+                    # 如果分类表格不存在，则创建新的分类表格
+                    echo -e "\n## $category\n| 仓库地址 | 分支 | 同步时间 | 描述 |\n| -------- | ---- | -------- | -------- |" >> README.md
+                fi
+
+                # 检查表格内是否有仓库信息
+                if grep -q "| $repo_url | $branch |" README.md; then
+                    # 如果仓库信息已存在，则更新同步时间和描述
+                    sed -i "s@| $repo_url | $branch | [^|]* | [^|]* |@| $repo_url | $branch | $sync_time | $description |@" README.md
+                else
+                    # 如果仓库信息不存在，则添加到分类表格中
+                    sed -i "/## $category/,/| -------- | ---- | -------- | -------- |/ {
+                        /| -------- | ---- | -------- | -------- |/a | $repo_url | $branch | $sync_time | $description |
+                    }" README.md
+                fi
+            done < updated_repos.txt
+
+            git add README.md
+            git commit -m "$(date +"%Y.%m.%d")：更新README.md文件中的同步信息"
+            git push
+        else
+            echo "没有需要更新的仓库"
+        fi
+
+  Delete_Workflow:
+    needs: [ sync ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 清理工作流程
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          retain_days: 1
+          keep_minimum_runs: 1
