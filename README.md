@@ -1,7 +1,7 @@
 
 自用 OpenWrt 软件包收集，配合在线编译 OpenWrt 仓库使用。
 
-本仓库地址：https://github.com/DoTheBetter/OpenWrt-Packages
+本仓库地址：[https://github.com/DoTheBetter/OpenWrt-Packages](https://github.com/DoTheBetter/OpenWrt-Packages)
 
 
 ## 依赖
