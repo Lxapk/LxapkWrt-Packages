@@ -7,7 +7,7 @@
 ## 依赖
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
-| https://github.com/sbwml/packages_lang_golang | 23.x | 2025.01.17 | geodata、xray 等依赖高版本 go |
+| https://github.com/sbwml/packages_lang_golang | 23.x | 2025.02.05 | geodata、xray 等依赖高版本 go |
 
 ## 主题
 | 仓库地址 | 分支 | 同步时间 | 描述 |
