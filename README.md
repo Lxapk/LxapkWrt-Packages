@@ -17,7 +17,7 @@
 ## 应用
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
-| https://github.com/sirpdboy/netspeedtest | master | 2025.01.09 | 网络速度诊断测试 |
+| https://github.com/sirpdboy/netspeedtest | master | 2025.02.17 | 网络速度诊断测试 |
 | https://github.com/sirpdboy/luci-app-netwizard | main | 2025.01.09 | 网络设置向导 |
 | https://github.com/sirpdboy/luci-app-parentcontrol | main | 2025.01.09 | 家长控制 |
 | https://github.com/sirpdboy/luci-app-partexp | main | 2025.01.09 | 分区格式化、扩容、挂载 |
