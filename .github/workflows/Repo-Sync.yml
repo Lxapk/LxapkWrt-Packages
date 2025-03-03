@@ -83,7 +83,7 @@ jobs:
     - name: 同步 OpenWrt 软件包
       run: |
         source ./sync_repo.sh
-        sync_repo "依赖" "https://github.com/sbwml/packages_lang_golang" "23.x" "golang" "geodata、xray 等依赖高版本 go"
+        sync_repo "依赖" "https://github.com/sbwml/packages_lang_golang" "24.x" "golang" "geodata、xray 等依赖高版本 go"
         sync_repo "主题" "https://github.com/jerrykuku/luci-theme-argon" "master" "luci-theme-argon" "argon 主题"
         sync_repo "应用" "https://github.com/sirpdboy/luci-app-autotimeset" "master" "luci-app-autotimeset" "定时任务设置"
         sync_repo "应用" "https://github.com/sirpdboy/luci-app-partexp" "main" "luci-app-partexp" "分区格式化、扩容、挂载"
