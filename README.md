@@ -7,7 +7,7 @@
 ## 依赖
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
-| https://github.com/sbwml/packages_lang_golang | 24.x | 2025.03.05 | geodata、xray 等依赖高版本 go |
+| https://github.com/sbwml/packages_lang_golang | 24.x | 2025.04.02 | geodata、xray 等依赖高版本 go |
 
 ## 主题
 | 仓库地址 | 分支 | 同步时间 | 描述 |
@@ -18,6 +18,6 @@
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
 | https://github.com/sirpdboy/netspeedtest | master | 2025.03.22 | 网络速度诊断测试 |
-| https://github.com/sirpdboy/luci-app-netwizard | main | 2025.03.31 | 网络设置向导 |
-| https://github.com/sirpdboy/luci-app-partexp | main | 2025.03.27 | 分区格式化、扩容、挂载 |
+| https://github.com/sirpdboy/luci-app-netwizard | main | 2025.04.02 | 网络设置向导 |
+| https://github.com/sirpdboy/luci-app-partexp | main | 2025.04.02 | 分区格式化、扩容、挂载 |
 | https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.03.31 | 定时任务设置 |
