@@ -20,4 +20,4 @@
 | https://github.com/sirpdboy/netspeedtest | master | 2025.03.22 | 网络速度诊断测试 |
 | https://github.com/sirpdboy/luci-app-netwizard | main | 2025.04.02 | 网络设置向导 |
 | https://github.com/sirpdboy/luci-app-partexp | main | 2025.04.02 | 分区格式化、扩容、挂载 |
-| https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.03.31 | 定时任务设置 |
+| https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.04.10 | 定时任务设置 |
