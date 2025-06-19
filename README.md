@@ -19,6 +19,6 @@
 | -------- | ---- | -------- | -------- |
 | https://github.com/sirpdboy/netspeedtest | js | 2025.06.15 | 网络速度诊断测试 |
 | https://github.com/sirpdboy/netspeedtest | master | 2025.05.17 | 网络速度诊断测试 |
-| https://github.com/sirpdboy/luci-app-netwizard | main | 2025.05.15 | 网络设置向导 |
+| https://github.com/sirpdboy/luci-app-netwizard | main | 2025.06.20 | 网络设置向导 |
 | https://github.com/sirpdboy/luci-app-partexp | main | 2025.06.13 | 分区格式化、扩容、挂载 |
 | https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.05.15 | 定时任务设置 |
