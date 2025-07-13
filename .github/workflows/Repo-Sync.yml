@@ -87,11 +87,6 @@ jobs:
         sync_repo "主题" "https://github.com/jerrykuku/luci-theme-argon" "master" "luci-theme-argon" "argon 主题"
         sync_repo "应用" "https://github.com/sirpdboy/luci-app-autotimeset" "master" "luci-app-autotimeset" "定时任务设置"
         sync_repo "应用" "https://github.com/sirpdboy/luci-app-partexp" "main" "luci-app-partexp" "分区格式化、扩容、挂载"
-        #sync_repo "应用" "https://github.com/sirpdboy/luci-app-parentcontrol" "main" "luci-app-parentcontrol" "家长控制"
-        sync_repo "应用" "https://github.com/sirpdboy/luci-app-netwizard" "main" "luci-app-netwizard" "网络设置向导"
-        sync_repo "应用" "https://github.com/sirpdboy/netspeedtest" "js" "netspeedtest" "网络速度诊断测试"
-        #sync_repo "应用" "https://github.com/destan19/OpenAppFilter" "master" "OpenAppFilter" "应用过滤"
-
     - name: 显示 updated_repos.txt 内容
       run: |
         if [ -f updated_repos.txt ]; then
