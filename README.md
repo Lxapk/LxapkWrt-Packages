@@ -1,7 +1,7 @@
 
 自用 OpenWrt 软件包收集，配合在线编译 OpenWrt 仓库使用。
 
-本仓库地址：[https://github.com/DoTheBetter/OpenWrt-Packages](https://github.com/DoTheBetter/OpenWrt-Packages)
+本仓库地址：[[https://github.com/Lxapk/LxapkWrt-Packages](https://github.com/Lxapk/LxapkWrt-Packages))
 
 
 ## 依赖
@@ -17,6 +17,6 @@
 ## 应用
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
-| https://github.com/sbwml/packages_lang_golang | main | 2025.06.20 | 依赖高版本 |
+| https://github.com/sbwml/packages_lang_golang | main | 2025.07.09 | 依赖高版本 |
 | https://github.com/sirpdboy/luci-app-partexp | main | 2025.06.13 | 分区格式化、扩容、挂载 |
 | https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.07.10 | 定时任务设置 |
