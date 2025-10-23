@@ -18,4 +18,4 @@
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
 | https://github.com/sirpdboy/luci-app-partexp | main | 2025.08.11 | 分区格式化、扩容、挂载 |
-| https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.08.11 | 定时任务设置 |
+| https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.10.24 | 定时任务设置 |
