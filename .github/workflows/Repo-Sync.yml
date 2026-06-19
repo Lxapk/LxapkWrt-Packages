@@ -46,10 +46,10 @@ jobs:
             git add $target_dir
             if git commit -m "$(date +"%Y.%m.%d")：$repo_url"; then
                 echo "$category|$repo_url|$branch|$(date +"%Y.%m.%d")|$description" >> updated_repos.txt
+                git push
             else
                 echo "没有需要提交的更改"
             fi
-            git push
         }
 
         sync_wiki() {
@@ -71,10 +71,10 @@ jobs:
             git add $target_dir
             if git commit -m "$(date +"%Y.%m.%d")：${repo_url} wiki"; then
                 echo "$category|$repo_url|wiki|$(date +"%Y.%m.%d")|$description" >> updated_repos.txt
+                git push
             else
                 echo "没有需要提交的更改"
             fi
-            git push
         }
 
         EOF
@@ -87,6 +87,7 @@ jobs:
         sync_repo "主题" "https://github.com/jerrykuku/luci-theme-argon" "master" "luci-theme-argon" "argon 主题"
         sync_repo "应用" "https://github.com/sirpdboy/luci-app-taskplan" "main" "luci-app-taskplan" "定时任务设置"
         sync_repo "应用" "https://github.com/sirpdboy/luci-app-partexp" "main" "luci-app-partexp" "分区格式化、扩容、挂载"
+
     - name: 显示 updated_repos.txt 内容
       run: |
         if [ -f updated_repos.txt ]; then
@@ -119,8 +120,11 @@ jobs:
             done < updated_repos.txt
 
             git add README.md
-            git commit -m "$(date +"%Y.%m.%d")：更新README.md文件中的同步信息"
-            git push
+            if git commit -m "$(date +"%Y.%m.%d")：更新README.md文件中的同步信息"; then
+                git push
+            else
+                echo "README.md 没有需要提交的更改"
+            fi
         else
             echo "没有需要更新的仓库"
         fi
