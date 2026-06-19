@@ -19,4 +19,3 @@
 | -------- | ---- | -------- | -------- |
 | https://github.com/sirpdboy/luci-app-taskplan | main | 2026.06.19 | 定时任务设置 |
 | https://github.com/sirpdboy/luci-app-partexp | main | 2026.06.19 | 分区格式化、扩容、挂载 |
-| https://github.com/sirpdboy/luci-app-autotimeset | master | 2025.10.24 | 定时任务设置 |
