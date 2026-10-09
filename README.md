@@ -7,12 +7,12 @@
 ## 依赖
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
-| https://github.com/sbwml/packages_lang_golang | 26.x | 2026.09.02 | geodata、xray 等依赖高版本 go |
+| https://github.com/sbwml/packages_lang_golang | 26.x | 2026.10.09 | geodata、xray 等依赖高版本 go |
 
 ## 主题
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
-| https://github.com/jerrykuku/luci-theme-argon | master | 2026.10.02 | argon 主题 |
+| https://github.com/jerrykuku/luci-theme-argon | master | 2026.10.09 | argon 主题 |
 
 ## 应用
 | 仓库地址 | 分支 | 同步时间 | 描述 |
