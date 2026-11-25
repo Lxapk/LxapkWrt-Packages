@@ -12,7 +12,7 @@
 ## 主题
 | 仓库地址 | 分支 | 同步时间 | 描述 |
 | -------- | ---- | -------- | -------- |
-| https://github.com/jerrykuku/luci-theme-argon | master | 2026.11.24 | argon 主题 |
+| https://github.com/jerrykuku/luci-theme-argon | master | 2026.11.25 | argon 主题 |
 
 ## 应用
 | 仓库地址 | 分支 | 同步时间 | 描述 |
